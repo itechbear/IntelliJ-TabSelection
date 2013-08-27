@@ -13,6 +13,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: HD
@@ -46,14 +48,7 @@ public class TabSelectionHandler extends EditorActionHandler {
             // Messages.showMessageDialog("tab key!", "title", Messages.getInformationIcon());
             FeatureUsageTracker.getInstance().triggerFeatureUsed(CodeCompletionFeatures.EDITING_COMPLETION_REPLACE);
 
-            int count = lookup.getList().getModel().getSize();
-            if (count == 0) {
-                return;
-            }
-            int index = (lookup.getList().getSelectedIndex() + 1) % count;
-            lookup.setFocused(true);
-            lookup.getList().setSelectedIndex(index);
-            lookup.getList().ensureIndexIsVisible(index);
+            downSelect(lookup);
             return;
         } else if (finishingChar == '.') {
             FeatureUsageTracker.getInstance().triggerFeatureUsed(CodeCompletionFeatures.EDITING_COMPLETION_FINISH_BY_CONTROL_DOT);
@@ -80,6 +75,32 @@ public class TabSelectionHandler extends EditorActionHandler {
         }
 
         return true;
+    }
+
+    private void downSelect(LookupImpl lookup) {
+        JList jList = lookup.getList();
+        if (jList == null) {
+            return;
+        }
+        ListModel listModel = jList.getModel();
+        if (listModel == null) {
+            return;
+        }
+        int count = listModel.getSize();
+        if (count == 0) {
+            return;
+        }
+        int index = (jList.getSelectedIndex() + 1) % count;
+        lookup.setFocused(true);
+        jList.setSelectedIndex(index);
+        int visible = index;
+        if (visible > jList.getLastVisibleIndex() - 1) {
+            visible += jList.getVisibleRowCount() - 2;
+            if (visible >= count) {
+                visible = count - 1;
+            }
+        }
+        jList.ensureIndexIsVisible(visible);
     }
 
 }
