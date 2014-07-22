@@ -6,9 +6,11 @@ import com.intellij.codeInsight.lookup.impl.LookupImpl;
 import com.intellij.codeInsight.lookup.impl.actions.ChooseItemAction;
 import com.intellij.codeInsight.template.impl.TemplateSettings;
 import com.intellij.openapi.actionSystem.DataContext;
+import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
@@ -28,8 +30,23 @@ public class TabSelectionHandler extends EditorActionHandler {
         this.finishingChar = finishingChar;
     }
 
+//    @Override
+//    public void execute(@NotNull final Editor editor, final DataContext dataContext) {
+//        final LookupImpl lookup = (LookupImpl) LookupManager.getActiveLookup(editor);
+//        if (lookup == null) {
+//            throw new AssertionError("The last lookup disposed at: " + LookupImpl.getLastLookupDisposeTrace() + "\n-----------------------\n");
+//        }
+//
+//        if (finishingChar == Lookup.REPLACE_SELECT_CHAR) {
+//            downSelect(lookup);
+//        } else {
+//            lookup.finishLookup(finishingChar);
+//        }
+//    }
+
     @Override
-    public void execute(@NotNull final Editor editor, final DataContext dataContext) {
+    protected void doExecute(Editor editor, @Nullable Caret caret, DataContext dataContext) {
+        // super.doExecute(editor, caret, dataContext);
         final LookupImpl lookup = (LookupImpl) LookupManager.getActiveLookup(editor);
         if (lookup == null) {
             throw new AssertionError("The last lookup disposed at: " + LookupImpl.getLastLookupDisposeTrace() + "\n-----------------------\n");

@@ -12,7 +12,12 @@ Features
 Compatibility
 =============
 
-Tested on idea-IC 12.1.4
+Tested on idea-IC 135
+
+Caution
+=======
+
+This plugin disables tab key expansion of live templates.
 
 Installation
 ============

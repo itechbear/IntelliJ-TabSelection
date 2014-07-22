@@ -22,6 +22,11 @@ public class TabSelectionComponent implements ApplicationComponent {
     public void initComponent() {
         // TODO: insert component initialization logic here
         // ActionManager.getInstance().addAnActionListener(new com.example.component.TabSelectionListener());
+
+        // disable live template expansion key.
+        // ExpandLiveTemplateByTabAction expandLiveTemplateByTabAction = (ExpandLiveTemplateByTabAction) ActionManager.getInstance().getAction(IdeActions.ACTION_EXPAND_LIVE_TEMPLATE_BY_TAB);
+        ActionManager.getInstance().unregisterAction(IdeActions.ACTION_EXPAND_LIVE_TEMPLATE_BY_TAB);
+
         ChooseItemAction.Replacing replacingAction = (ChooseItemAction.Replacing) ActionManager.getInstance().getAction(IdeActions.ACTION_CHOOSE_LOOKUP_ITEM_REPLACE);
         replacingAction.setupHandler(new TabSelectionHandler(false, Lookup.REPLACE_SELECT_CHAR));
     }
