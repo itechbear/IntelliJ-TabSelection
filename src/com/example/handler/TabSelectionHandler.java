@@ -71,10 +71,10 @@ public class TabSelectionHandler extends EditorActionHandler {
         if (focusedOnly && lookup.getFocusDegree() == LookupImpl.FocusDegree.UNFOCUSED) {
             return false;
         }
-        if (finishingChar == Lookup.NORMAL_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.ENTER_CHAR) ||
-                finishingChar == Lookup.REPLACE_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.TAB_CHAR)) {
-            return false;
-        }
+//        if (finishingChar == Lookup.NORMAL_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.ENTER_CHAR) ||
+//                finishingChar == Lookup.REPLACE_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.TAB_CHAR)) {
+//            return false;
+//        }
         if (finishingChar == Lookup.REPLACE_SELECT_CHAR) {
             return !lookup.getItems().isEmpty();
         }
