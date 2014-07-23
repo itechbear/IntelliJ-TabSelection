@@ -1,6 +1,6 @@
-package com.example.component;
+package com.github.itechbear.tabselection.component;
 
-import com.example.handler.TabSelectionHandler;
+import com.github.itechbear.tabselection.handler.TabSelectionHandler;
 import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.codeInsight.lookup.impl.actions.ChooseItemAction;
 import com.intellij.openapi.actionSystem.ActionManager;

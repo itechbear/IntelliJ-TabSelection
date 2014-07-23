@@ -1,8 +1,8 @@
 <idea-plugin version="2">
-  <id>com.yourcompany.unique.plugin.id</id>
+  <id>com.github.itechbear.intellij-tabselection</id>
   <name>TabSelection</name>
   <version>1.0</version>
-  <vendor email="itechbear@gmail.com" url="http://www.yourcompany.com">YourCompany</vendor>
+  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">github</vendor>
 
   <description><![CDATA[
       An intellij idea plugin that enables tab key to choose items from the suggest list.<br>
@@ -25,7 +25,7 @@
   <application-components>
     <!-- Add your application components here -->
       <component>
-          <implementation-class>com.example.component.TabSelectionComponent</implementation-class>
+          <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
       </component>
   </application-components>
 
