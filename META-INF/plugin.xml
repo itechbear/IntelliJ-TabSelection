@@ -5,13 +5,11 @@
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">github</vendor>
 
   <description><![CDATA[
-      An intellij idea plugin that enables tab key to choose items from the suggest list.<br>
-      <small></small>
+      An intellij idea plugin that enables tab key to select completion candidates, like shells.
       ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <small>most HTML tags may be used</small>
+      Code updated.
       ]]>
   </change-notes>
 
