@@ -10,6 +10,7 @@ import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -102,7 +103,13 @@ public class TabSelectionHandler extends EditorActionHandler {
 //                visible = count - 1;
 //            }
 //        }
-        jList.ensureIndexIsVisible(index);
+//        jList.ensureIndexIsVisible(index);
+        int last = Math.min(index + jList.getVisibleRowCount(), count - 1);
+        Rectangle rectangle = jList.getCellBounds(index, last);
+        if (rectangle == null) {
+            return;
+        }
+        jList.scrollRectToVisible(rectangle);
     }
 
 }
