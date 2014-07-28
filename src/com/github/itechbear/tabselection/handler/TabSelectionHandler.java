@@ -96,16 +96,7 @@ public class TabSelectionHandler extends EditorActionHandler {
         int index = (jList.getSelectedIndex() + 1) % count;
         lookup.setFocusDegree(LookupImpl.FocusDegree.FOCUSED);
         jList.setSelectedIndex(index);
-//        int visible = index;
-//        if (visible > jList.getLastVisibleIndex() - 1) {
-//            visible += jList.getVisibleRowCount() - 2;
-//            if (visible >= count) {
-//                visible = count - 1;
-//            }
-//        }
-//        jList.ensureIndexIsVisible(index);
-        int last = Math.min(index + jList.getVisibleRowCount(), count - 1);
-        Rectangle rectangle = jList.getCellBounds(index, last);
+        Rectangle rectangle = jList.getCellBounds(index, jList.getVisibleRowCount() / 2);
         if (rectangle == null) {
             return;
         }
