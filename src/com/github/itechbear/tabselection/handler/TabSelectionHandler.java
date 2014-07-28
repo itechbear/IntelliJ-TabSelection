@@ -3,6 +3,8 @@ package com.github.itechbear.tabselection.handler;
 import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.codeInsight.lookup.LookupManager;
 import com.intellij.codeInsight.lookup.impl.LookupImpl;
+import com.intellij.codeInsight.lookup.impl.actions.ChooseItemAction;
+import com.intellij.codeInsight.template.impl.TemplateSettings;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
@@ -69,10 +71,10 @@ public class TabSelectionHandler extends EditorActionHandler {
         if (focusedOnly && lookup.getFocusDegree() == LookupImpl.FocusDegree.UNFOCUSED) {
             return false;
         }
-//        if (finishingChar == Lookup.NORMAL_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.ENTER_CHAR) ||
-//                finishingChar == Lookup.REPLACE_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.TAB_CHAR)) {
-//            return false;
-//        }
+        if (finishingChar == Lookup.NORMAL_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.ENTER_CHAR) ||
+                finishingChar == Lookup.REPLACE_SELECT_CHAR && ChooseItemAction.hasTemplatePrefix(lookup, TemplateSettings.TAB_CHAR)) {
+            return false;
+        }
         if (finishingChar == Lookup.REPLACE_SELECT_CHAR) {
             return !lookup.getItems().isEmpty();
         }
@@ -96,7 +98,9 @@ public class TabSelectionHandler extends EditorActionHandler {
         int index = (jList.getSelectedIndex() + 1) % count;
         lookup.setFocusDegree(LookupImpl.FocusDegree.FOCUSED);
         jList.setSelectedIndex(index);
-        Rectangle rectangle = jList.getCellBounds(index, jList.getVisibleRowCount() / 2);
+//        jList.ensureIndexIsVisible(index);
+        int last = index + jList.getVisibleRowCount() / 2;
+        Rectangle rectangle = jList.getCellBounds(index, last);
         if (rectangle == null) {
             return;
         }
