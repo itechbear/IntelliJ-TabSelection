@@ -9,6 +9,11 @@ Features
  - You can use tab key to down select items like the down arrow key in the suggest list.
  - And ... it disables default tab key behavior after the suggest list popups up.
 
+Settings
+========
+
+This plugin doesn't provide any settings.
+
 Compatibility
 =============
 
