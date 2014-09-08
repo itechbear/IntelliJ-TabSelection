@@ -34,18 +34,19 @@ public class SkipParenthesisHandler extends EditorWriteActionHandler {
 
         CommandProcessor.getInstance().setCurrentCommandGroupId(Key.create("EditGroup"));
         CommandProcessor.getInstance().setCurrentCommandName(EditorBundle.message("typing.command.name", new Object[0]));
-        Project project = (Project) CommonDataKeys.PROJECT.getData(dataContext);
-        if (skipParanthesis(editor, caret, project)) {
-            return;
+        Project project = CommonDataKeys.PROJECT.getData(dataContext);
+        if (shouldSkip(editor, caret, project)) {
+            skipParanthesis(editor, caret, project);
+        } else {
+            insertTabAtCaret(editor, caret, project);
         }
-        insertTabAtCaret(editor, caret, project);
     }
 
     public boolean isEnabled(Editor editor, DataContext dataContext) {
         return !editor.isOneLineMode() && !((EditorEx)editor).isEmbeddedIntoDialogWrapper() && !editor.isViewer();
     }
 
-    private static boolean skipParanthesis(Editor editor, @NotNull Caret caret, Project project) {
+    private static boolean shouldSkip(Editor editor, @NotNull Caret caret, Project project) {
         if (caret.hasSelection()) {
             return false;
         }
@@ -54,12 +55,16 @@ public class SkipParenthesisHandler extends EditorWriteActionHandler {
         Document document = editor.getDocument();
         TextRange textRange = new TextRange(offset, offset + 1);
         String string = document.getText(textRange);
-        if ( string.equals(")") || string.equals("}") || string.equals("]") ) {
-            editor.getCaretModel().moveToOffset(offset + 1);
-            return true;
-        }
 
-        return false;
+        return string.equals(")") || string.equals("}") || string.equals("]");
+    }
+
+    private static void skipParanthesis(Editor editor, @NotNull Caret caret, Project project) {
+        int offset = editor.getCaretModel().getOffset();
+        while (shouldSkip(editor, caret, project)) {
+            offset++;
+            editor.getCaretModel().moveToOffset(offset);
+        }
     }
 
     private static void insertTabAtCaret(Editor editor, @NotNull Caret caret, Project project) {
