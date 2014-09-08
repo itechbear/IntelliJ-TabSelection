@@ -19,6 +19,10 @@ import com.intellij.util.ui.MacUIUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by HD on 2014/9/8.
  */
@@ -26,6 +30,7 @@ public class SkipParenthesisHandler extends EditorWriteActionHandler {
     public SkipParenthesisHandler() {
         super(true);
     }
+    private static Set<String> SKIP_CHARS = new HashSet<String>(Arrays.asList(";", ")", "]", "}"));
 
     public void executeWriteAction(Editor editor, @Nullable Caret caret, DataContext dataContext) {
         if(caret == null) {
@@ -56,7 +61,7 @@ public class SkipParenthesisHandler extends EditorWriteActionHandler {
         TextRange textRange = new TextRange(offset, offset + 1);
         String string = document.getText(textRange);
 
-        return string.equals(")") || string.equals("}") || string.equals("]");
+        return SKIP_CHARS.contains(string);
     }
 
     private static void skipParanthesis(Editor editor, @NotNull Caret caret, Project project) {
