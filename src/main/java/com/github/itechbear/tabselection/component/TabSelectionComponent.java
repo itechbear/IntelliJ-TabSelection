@@ -45,7 +45,6 @@ public class TabSelectionComponent implements ProjectComponent {
 
     @Override
     public void projectOpened() {
-
     }
 
     @Override

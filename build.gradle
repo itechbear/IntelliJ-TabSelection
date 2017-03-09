@@ -1,0 +1,42 @@
+buildscript {
+  repositories {
+    maven {
+      url 'http://maven.aliyun.com/nexus/content/groups/public'
+    }
+    mavenCentral()
+    maven {
+      url 'http://dl.bintray.com/jetbrains/intellij-plugin-service'
+    }
+  }
+}
+
+plugins {
+  id 'org.jetbrains.intellij' version '0.2.0'
+}
+
+repositories {
+  maven {
+    url 'http://maven.aliyun.com/nexus/content/groups/public'
+  }
+  mavenCentral()
+}
+
+dependencies {
+//  compile 'com.aliyun.oss:aliyun-sdk-oss:+'
+
+//  testCompile 'org.testng:testng:+'
+}
+
+intellij {
+//  version 'IC-2016.1'
+  localPath 'D:/ProgramFiles/IDEA'
+  plugins = []
+  pluginName 'IntelliJ-TabSelection'
+
+  publish {
+//    username 'zolotov'
+//    password 'password'
+//    channel 'nightly'
+  }
+}
+
