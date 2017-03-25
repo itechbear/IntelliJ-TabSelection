@@ -30,8 +30,8 @@ dependencies {
 }
 
 intellij {
-  version 'IC-2016.1'
-//  localPath 'D:/ProgramFiles/IDEA'
+//  version 'IC-2016.1'
+  localPath 'D:/ProgramFiles/IDEA'
   plugins = []
   pluginName 'IntelliJ-TabSelection'
 

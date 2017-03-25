@@ -5,7 +5,7 @@ import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.codeInsight.lookup.impl.actions.ChooseItemAction;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.IdeActions;
-import com.intellij.openapi.components.ProjectComponent;
+import com.intellij.openapi.components.ApplicationComponent;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
  * Time: 下午12:28
  * To change this template use File | Settings | File Templates.
  */
-public class TabSelectionComponent implements ProjectComponent {
+public class TabSelectionComponent implements ApplicationComponent {
     public TabSelectionComponent() {
     }
 
@@ -32,14 +32,5 @@ public class TabSelectionComponent implements ProjectComponent {
     @NotNull
     public String getComponentName() {
         return "TabSelectionComponent";
-    }
-
-    @Override
-    public void projectOpened() {
-    }
-
-    @Override
-    public void projectClosed() {
-
     }
 }
