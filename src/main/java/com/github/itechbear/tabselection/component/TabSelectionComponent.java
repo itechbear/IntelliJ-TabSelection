@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * Created with IntelliJ IDEA.
  * User: HD
  * Date: 13-8-26
- * Time: 下午12:28
+ * Time: 12:28AM
  * To change this template use File | Settings | File Templates.
  */
 public class TabSelectionComponent implements ProjectComponent {

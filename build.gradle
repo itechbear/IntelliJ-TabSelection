@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-  id 'org.jetbrains.intellij' version '0.2.5'
+  id 'org.jetbrains.intellij' version '0.2.17'
 }
 
 repositories {
@@ -28,8 +28,8 @@ dependencies {
 }
 
 intellij {
-  version 'IC-2016.1'
-//  localPath 'D:/ProgramFiles/IDEA'
+//  version 'IC-2017.1'
+  localPath 'D:/ProgramFiles/IDEA'
   plugins = []
   pluginName 'IntelliJ-TabSelection'
 

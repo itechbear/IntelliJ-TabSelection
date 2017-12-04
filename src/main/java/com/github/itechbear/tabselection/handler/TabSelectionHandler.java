@@ -18,7 +18,7 @@ import java.awt.*;
  * Created with IntelliJ IDEA.
  * User: HD
  * Date: 13-8-26
- * Time: 下午12:15
+ * Time: 12:15AM
  * To change this template use File | Settings | File Templates.
  */
 public class TabSelectionHandler extends EditorActionHandler {
