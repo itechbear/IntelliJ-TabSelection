@@ -1,7 +1,7 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.github.itechbear.intellij-tabselection</id>
   <name>TabSelection</name>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">github</vendor>
 
   <description><![CDATA[
@@ -22,13 +22,13 @@
 
   <application-components>
     <!-- Add your application components here -->
+    <component>
+      <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
+    </component>
   </application-components>
 
   <project-components>
     <!-- Add your project components here -->
-      <component>
-          <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
-      </component>
   </project-components>
 
   <actions>
