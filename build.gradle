@@ -14,6 +14,8 @@ plugins {
   id 'org.jetbrains.intellij' version '0.2.17'
 }
 
+import org.apache.tools.ant.taskdefs.condition.Os;
+
 repositories {
   maven {
     url 'http://maven.aliyun.com/nexus/content/groups/public'
@@ -29,7 +31,16 @@ dependencies {
 
 intellij {
 //  version 'IC-2017.1'
-  localPath 'D:/ProgramFiles/IDEA'
+  if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+    localPath 'D:\\ProgramFiles\\IDEA'
+  } else if (Os.isFamily(Os.FAMILY_MAC)) {
+    localPath System.getProperty('user.home') + '/Applications/IntelliJ IDEA CE.app/Contents'
+  } else if (Os.isFamily(Os.FAMILY_UNIX)) {
+    localPath System.getProperty('user.home') + '/Applications/IDEA'
+  } else {
+    localPath ''
+  }
+
   plugins = []
   pluginName 'IntelliJ-TabSelection'
 
