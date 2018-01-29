@@ -1,8 +1,8 @@
 <idea-plugin version="2">
   <id>com.github.itechbear.intellij-tabselection</id>
-  <name>IntelliJ-TabSelection</name>
-  <version>1.1.1</version>
-  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">itechbear@github.com</vendor>
+  <name>TabSelection</name>
+  <version>1.1.0</version>
+  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">github</vendor>
 
   <description><![CDATA[
       An intellij idea plugin that enables tab key to select completion candidates, like shells.
@@ -22,13 +22,13 @@
 
   <application-components>
     <!-- Add your application components here -->
-      <component>
-          <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
-      </component>
   </application-components>
 
   <project-components>
     <!-- Add your project components here -->
+      <component>
+          <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
+      </component>
   </project-components>
 
   <actions>
