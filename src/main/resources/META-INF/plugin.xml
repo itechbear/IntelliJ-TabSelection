@@ -1,49 +1,7 @@
-<<<<<<< HEAD
-<idea-plugin>
-  <id>com.github.itechbear.intellij-tabselection</id>
-  <name>TabSelection</name>
-  <version>1.1.1</version>
-  <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">github</vendor>
-
-  <description><![CDATA[
-      An intellij idea plugin that enables tab key to select completion candidates, like shells.
-      ]]></description>
-
-  <change-notes><![CDATA[
-      Code updated.
-      ]]>
-  </change-notes>
-
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="180.0"/>
-
-  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
-  <depends>com.intellij.modules.lang</depends>
-
-  <application-components>
-    <!-- Add your application components here -->
-    <component>
-      <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
-    </component>
-  </application-components>
-
-  <project-components>
-    <!-- Add your project components here -->
-  </project-components>
-
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
-
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
-=======
 <idea-plugin>
   <id>com.github.itechbear.intellij.tabselection</id>
   <name>IntelliJ-TabSelection</name>
-  <version>1.2.1</version>
+  <version>2020.1</version>
   <vendor email="itechbear@gmail.com" url="http://github.com/itechbear/IntelliJ-TabSelection">github</vendor>
 
   <description><![CDATA[
@@ -51,12 +9,15 @@
       ]]></description>
 
   <change-notes><![CDATA[
-      Code updated.
+    <ul>
+      <li><em>2020.1</em> Compatible with IDEA 2020.1</li>
+      <li><em>2019.3</em> Compatible with IDEA 2019.3</li>
+    </ul>
       ]]>
   </change-notes>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="182.0"/>
+  <idea-version since-build="201.0"/>
 
   <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
        on how to target different products -->
@@ -64,10 +25,11 @@
 
   <application-components>
     <!-- Add your application components here -->
-    <component>
-      <implementation-class>com.github.itechbear.tabselection.component.TabSelectionComponent</implementation-class>
-    </component>
   </application-components>
+
+  <applicationListeners>
+    <listener class="com.github.itechbear.tabselection.component.TabSelectionComponent" topic="com.intellij.ide.AppLifecycleListener"/>
+  </applicationListeners>
 
   <project-components>
     <!-- Add your project components here -->
@@ -80,5 +42,4 @@
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
   </extensions>
->>>>>>> update for 2019.3
 </idea-plugin>
