@@ -4,6 +4,8 @@ import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.codeInsight.lookup.LookupFocusDegree;
 import com.intellij.codeInsight.lookup.LookupManager;
 import com.intellij.codeInsight.lookup.impl.LookupImpl;
+import com.intellij.codeInsight.lookup.impl.actions.ChooseItemAction;
+import com.intellij.codeInsight.template.impl.editorActions.ExpandLiveTemplateCustomAction;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
@@ -31,11 +33,18 @@ public class TabSelectionHandler extends EditorActionHandler {
     }
 
     @Override
-    protected void doExecute(Editor editor, @Nullable Caret caret, DataContext dataContext) {
+    protected void doExecute(@NotNull Editor editor, @Nullable Caret caret, DataContext dataContext) {
         // super.doExecute(editor, caret, dataContext);
         final LookupImpl lookup = (LookupImpl) LookupManager.getActiveLookup(editor);
-        if (lookup == null) {
-            throw new AssertionError("The last lookup disposed at: " + LookupImpl.getLastLookupDisposeTrace() + "\n-----------------------\n");
+        assert lookup != null;
+
+        if ((finishingChar == Lookup.NORMAL_SELECT_CHAR || finishingChar == Lookup.REPLACE_SELECT_CHAR) &&
+                ChooseItemAction.hasTemplatePrefix(lookup, finishingChar)) {
+            lookup.hideLookup(true);
+
+            ExpandLiveTemplateCustomAction.createExpandTemplateHandler(finishingChar).execute(editor, null, dataContext);
+
+            return;
         }
 
         if (finishingChar == Lookup.REPLACE_SELECT_CHAR) {
@@ -58,7 +67,7 @@ public class TabSelectionHandler extends EditorActionHandler {
         return true;
     }
 
-    private static void downSelect(LookupImpl lookup) {
+    private static void downSelect(@NotNull LookupImpl lookup) {
         JList jList = lookup.getList();
         if (jList == null) {
             return;
